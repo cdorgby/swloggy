@@ -4,3 +4,13 @@ build-*/
 include/slwoggy.hpp
 amalgamation/
 .cache/
+
+# IDE and editor files
+.vscode/settings.json
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/tasks.json
+
+# Temporary files from devcontainer setup
+DEV_QUICKSTART.md
+.test_permissions
