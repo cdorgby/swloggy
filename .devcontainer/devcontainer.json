@@ -1,0 +1,82 @@
+{
+	"name": "slwoggy C++20 Development",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"C_Cpp.default.cppStandard": "c++20",
+				"C_Cpp.default.compilerPath": "/usr/bin/g++",
+				"C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+				"C_Cpp.clang_format_path": "/usr/bin/clang-format",
+				"C_Cpp.clang_format_style": "file",
+				"files.associations": {
+					"*.hpp": "cpp",
+					"*.cpp": "cpp"
+				},
+				"cmake.configureOnOpen": true,
+				"cmake.buildDirectory": "${workspaceFolder}/build",
+				"terminal.integrated.defaultProfile.linux": "bash"
+			},
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cpptools-extension-pack",
+				"ms-vscode.cmake-tools",
+				"twxs.cmake",
+				"ms-vscode.hexeditor",
+				"ms-vscode.test-adapter-converter",
+				"matepek.vscode-catch2-test-adapter",
+				"GitHub.vscode-pull-request-github",
+				"GitHub.copilot",
+				"GitHub.copilot-chat"
+			]
+		}
+	},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode",
+
+	// Set environment variables
+	"remoteEnv": {
+		"CMAKE_BUILD_TYPE": "Debug",
+		"CXX": "g++",
+		"CC": "gcc"
+	},
+
+	// Commands to run after the container is created.
+	"postCreateCommand": "bash .devcontainer/setup.sh",
+
+	// Use 'postStartCommand' to run commands after the container starts.
+	"postStartCommand": {
+		"server-info": "echo 'Container ready! Build with: ./build.sh Debug'"
+	},
+
+	// Set the default extension for opening files.
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+	"workspaceFolder": "/workspace",
+
+	// Ensure proper file permissions for bind mounts
+	"mounts": [
+		"source=${localWorkspaceFolder}/.git,target=/workspace/.git,type=bind,consistency=cached"
+	],
+
+	// Enable ptrace for debugging support
+	"capAdd": ["SYS_PTRACE"],
+	"securityOpt": ["seccomp=unconfined"],
+
+	// Configure container user and permissions
+	"updateRemoteUserUID": true
+}

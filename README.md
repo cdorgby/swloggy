@@ -1286,6 +1286,45 @@ LOG(debug) << "Weak: " << weak;    // Logs address or "(expired)"
 - POSIX threads (Linux/macOS)
 - Windows threads (Windows)
 
+### Development Environment
+
+#### GitHub Codespaces (Recommended)
+The easiest way to get started is using GitHub Codespaces with the pre-configured development container:
+
+1. Go to the repository on GitHub
+2. Click the green "Code" button
+3. Select "Codespaces" tab  
+4. Click "Create codespace on main"
+5. Wait for the container to build and start
+6. Run `./build.sh Debug` to build with tests enabled
+
+The devcontainer includes:
+- **Ubuntu 24.04** with C++20 support (GCC 13, Clang 18)
+- **Pre-configured VS Code** with C++ extensions and IntelliSense
+- **All dependencies** - CMake, build tools, debuggers
+- **Ready-to-use environment** - no setup required
+
+#### VS Code Remote-Containers
+For local development with VS Code:
+
+1. Install the "Remote-Containers" extension
+2. Clone this repository locally  
+3. Open in VS Code
+4. Click "Reopen in Container" when prompted
+5. Wait for setup to complete
+
+#### Manual Setup (Ubuntu/Debian)
+```bash
+# Install dependencies
+sudo apt update
+sudo apt install build-essential cmake g++-13 clang-18 git
+
+# Clone and build
+git clone https://github.com/cdorgby/slwoggy.git
+cd slwoggy
+./build.sh Debug
+```
+
 ### Build Instructions
 
 ```bash
